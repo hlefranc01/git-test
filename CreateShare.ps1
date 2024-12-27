@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
 .DESCRIPTION
-Create a new share from CSV file data 001
+Create a new share from CSV file data 001 002
 
 .EXAMPLE
 .\CreateShare.ps1 -ShareCSVFile .\ShareListToCreate.csv
