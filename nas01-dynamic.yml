@@ -1,0 +1,72 @@
+# Dynamic configuration
+http:
+  middlewares:
+    nofloc:
+      headers:
+        customResponseHeaders:
+          Permissions-Policy: "interest-cohort=()"
+    secureHeaders:
+      headers:
+        sslRedirect: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 31536000   
+
+    # UserName : admin
+    # Password : qwer1234    
+    user-auth:
+      basicAuth:
+        users:
+          - "admin:$apr1$tm53ra6x$FntXd6jcvxYM/YH0P2hcc1"
+
+# Local IP nas
+  routers:
+    route-to-nas01:
+      rule: "Host(`nas01.hlecloud.fr`)"
+      service: route-to-nas01-service
+      priority: 1000
+      entryPoints:
+        - web
+
+    route-to-nas02:
+      rule: "Host(`nas02.hlecloud.fr`)"
+      service: route-to-nas02-service
+      priority: 1000
+      entryPoints:
+        - web
+
+    route-to-siab:
+      rule: "Host(`siab.hlecloud.fr`)"
+      service: route-to-siab-service
+      priority: 1000
+      entryPoints:
+        - web
+
+  services:
+    route-to-nas01-service:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.10:800"
+       
+    route-to-nas02-service:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.152:800"
+
+    route-to-siab-service:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.10:4200"        
+tls:
+  options:
+    default:
+      cipherSuites:
+        - TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        - TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305
+        - TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305
+      minVersion: VersionTLS12
+
