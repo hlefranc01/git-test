@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
 .DESCRIPTION
-Create a new share from CSV file data 001 002
+Create a new share from CSV file data
 
 .EXAMPLE
 .\CreateShare.ps1 -ShareCSVFile .\ShareListToCreate.csv
@@ -17,7 +17,7 @@ Error message if the share creation failed
 .VERSION: 1.0
 Author: HLE
 
-Created On: 01/01/2024 lsùglsùglùsglsglùlgùsgùs lù
+Created On: 01/01/2024
 LASTEDIT:
 
 #>
