@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
 .DESCRIPTION
-Create a new share from CSV file data
+Create a new share from CSV file data 001
 
 .EXAMPLE
 .\CreateShare.ps1 -ShareCSVFile .\ShareListToCreate.csv
@@ -57,7 +57,7 @@ else
 If (!(Get-SmbShare -Name $LShare -ErrorAction SilentlyContinue))
 {
     Write-Host "Creating `"$LShare`" share ..."  -ForegroundColor green
-    New-SmbShare –Name $LShare –Path $LPath
+    New-SmbShare â€“Name $LShare â€“Path $LPath
 
     Write-Host "Revoking `"$LShare`" permissions share ..."  -ForegroundColor green
     Revoke-SmbShareAccess -Name $LShare -AccountName "Everyone" -Force
